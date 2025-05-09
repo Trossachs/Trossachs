@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>Trossachs - Nigerian Premium Marketplace for Skincare, Fashion & More</title>
+  <meta name="description" content="Discover authentic Nigerian products at Trossachs. Shop premium skincare, fashion, appliances and utilities with nationwide delivery. Support Nigerian craftsmanship." />
+  <meta name="keywords" content="Nigerian marketplace, skincare, fashion, appliances, utilities, African products, Nigerian crafts" />
+  <!-- Open Graph Tags for social sharing -->
+  <meta property="og:title" content="Trossachs - Nigerian Premium Marketplace" />
+  <meta property="og:description" content="Shop authentic Nigerian skincare, fashion, appliances and utilities with nationwide delivery." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trossachs.netlify.app" />
+  <!-- Google Fonts - for our font families -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Special routing script for Netlify -->
+  <script src="/netlify-routing.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <noscript>
+    <div style="padding: 2rem; text-align: center;">
+      <h1>JavaScript Required</h1>
+      <p>Please enable JavaScript to use Trossachs Nigerian Marketplace.</p>
+    </div>
+  </noscript>
+  <!-- This redirect will help with Netlify SPA routing -->
+  <script>
+    // Check for non-root paths that might need to be handled
+    (function() {
+      // Only run this script during page load, not for client-side navigation
+      if (window.location.pathname !== '/' && !window.location.pathname.match(/\.[a-zA-Z0-9]+$/)) {
+        console.log('Detected direct navigation to route:', window.location.pathname);
+      }
+    })();
+  </script>
+</body>
+</html>

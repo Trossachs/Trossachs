@@ -1,0 +1,48 @@
+[build]
+  # Fixed command for Netlify build - with improved post-processing for routing
+  command = "npm i @rollup/rollup-linux-x64-gnu && npm run build && node netlify/copy-redirects.js"
+  publish = "dist"
+  
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  # Make sure functions have access to necessary files
+  included_files = ["netlify/functions/**", "shared/**"]
+  
+# First handle the API requests to the serverless function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Handle direct function access for debugging
+[[redirects]]
+  from = "/.netlify/functions/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Handle health check endpoints
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/api/health"
+  status = 200
+  
+# CRITICAL: Frontend history routing for SPA - this must be LAST
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+  
+[dev]
+  framework = "vite"
+  
+# Important: Make sure functions are built properly
+[build.environment]
+  # Use Node.js 18.17.1 specifically for better compatibility
+  NODE_VERSION = "18.17.1"
+  # Ensure Linux architecture is properly detected
+  NETLIFY_USE_YARN = "false"
+  # We're installing the native module directly now, so we can let Rollup use it
+  # NPM_FLAGS = "--legacy-peer-deps"

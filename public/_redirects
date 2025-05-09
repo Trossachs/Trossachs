@@ -1,0 +1,11 @@
+# Netlify redirects file - this ensures all routes work correctly with SPA and serverless functions
+
+# API redirects
+/api/*  /.netlify/functions/api/:splat  200
+/.netlify/functions/api/*  /.netlify/functions/api/:splat  200
+
+# Health check endpoint
+/health  /.netlify/functions/api/health  200
+
+# SPA fallback - this MUST be last
+/*  /index.html  200

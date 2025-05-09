@@ -1,0 +1,28 @@
+[build]
+  publish = "."
+  
+# Redirect API requests to the serverless function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+  force = true
+
+# Handle direct function access for debugging
+[[redirects]]
+  from = "/.netlify/functions/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Handle health check endpoints
+[[redirects]]
+  from = "/health"
+  to = "/.netlify/functions/api/health"
+  status = 200
+  
+# Frontend history routing for SPA - this MUST be LAST
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
